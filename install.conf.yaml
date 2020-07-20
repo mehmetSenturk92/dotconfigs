@@ -16,7 +16,7 @@
   - command: echo success
     quiet: true
     description: Back up section completed
-  - command: read answer && sh configure.sh $answer
+  - command: read answer && bash configure.sh $answer
     stdin: true
     stdout: true
     quiet: true

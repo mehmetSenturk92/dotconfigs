@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-set -o pipefail
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 answer=$1
@@ -50,3 +49,4 @@ else
     echo "Wrong input supplied. Valid inputs are Y or N"
     exit 1
 fi
+
