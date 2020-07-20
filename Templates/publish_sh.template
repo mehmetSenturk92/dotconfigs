@@ -1,0 +1,12 @@
+#!/bin/bash
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+# Changing directory to project root
+cd $SCRIPTPATH
+# Zipping all files excluding gitignore to override config files in server
+zip -r ??project_name.zip * -x@.gitignore
+# Adding samples to creating files in remote
+zip -r ??project_name.zip * -i "*sample*" "config/environment.*"
+# Copying zip file to remote
+scp ??project_name.zip etl@0.0.0.0:/home/etl/apps/??project_name
+# Exracting zip file in remote
+ssh -t etl@0.0.0.0 'unzip /home/etl/apps/??project_name/??project_name.zip -d /home/etl/apps/??project_name'
