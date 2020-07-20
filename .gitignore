@@ -1,3 +1,4 @@
 .local
 backup/*
 !*sample*
+.zshrc
