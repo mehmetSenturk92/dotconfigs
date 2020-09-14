@@ -25,11 +25,15 @@ then
     echo "source $SCRIPTPATH/.env" >> .zshrc
     echo "source $SCRIPTPATH/.functions" >> .zshrc
     echo "source $SCRIPTPATH/.aliases" >> .zshrc
-    echo "source $SCRIPTPATH/.edit" >> .zshrc
-    echo "source $SCRIPTPATH/.keybindings" >> .zshrc
     echo "source $SCRIPTPATH/.zshplugins" >> .zshrc
-    echo "source $SCRIPTPATH/.local" >> .zshrc
+    echo 'if [ "" != "ls -a | grep local" ]; then; for file in $(ls -a $HOME/dotconfigs | grep local); do source $HOME/dotconfigs/$file; done; fi' >> .zshrc
     echo "source $ZSH/oh-my-zsh.sh" >> .zshrc
+    echo ".edit file will replace your shell keybindings with vi keybindings."
+    echo "This is not recommended if you are not familiar with vi editing."
+    fileCheck .edit
+    echo ".keybindings will add vi editor shortcut if you want to write commands"
+    echo "in vi editor screen. Shortcut will be (control + E)"
+    fileCheck .keybindings
 elif [ "$answer" == "N" ]
 then
     cat backup/.zshrc > .zshrc
@@ -39,14 +43,18 @@ then
     fileCheck .env
     fileCheck .functions
     fileCheck .aliases
-    fileCheck .edit
-    fileCheck .keybindings
     fileCheck .zshplugins
-    fileCheck .local
     cat backup/.vimrc >> .vimrc
+    echo 'if [ "" != "ls -a | grep local" ]; then; for file in $(ls -a $HOME/dotconfigs | grep local); do source $HOME/dotconfigs/$file; done; fi' >> .zshrc
     echo "source $ZSH/oh-my-zsh.sh" >> .zshrc
+    echo ".edit file will replace your shell keybindings with vi keybindings."
+    echo "This is not recommended if you are not familiar with vi editing."
+    fileCheck .edit
+    echo ".keybindings will add vi editor shortcut if you want to write commands"
+    echo "in vi editor screen. Shortcut will be (control + E)"
+    fileCheck .keybindings
 else
-    echo "Wrong input supplied. Valid inputs are Y or N"
+    echo "Invalid input supplied. Valid inputs are Y or N"
     exit 1
 fi
 
