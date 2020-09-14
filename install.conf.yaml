@@ -7,6 +7,7 @@
       force: true
 
 - shell:
+  - [git submodule update --init --recursive, Installing submodules]
   - command: if [ -f backup/.vimrc ]; then; echo ".vimrc file already backed up"; else; echo "Backing up .vimrc" && cp $HOME/.vimrc backup; fi
     stdout: true
     quiet: true
@@ -28,5 +29,4 @@
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
 
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
+
