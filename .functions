@@ -30,6 +30,7 @@ create_python_project(){
 }
 
 check_git_status(){
+        # Function for checking remote repository changes
         git_branch_var=$(git branch --show-current)
         if [ $git_branch_var != "master" ]
         then
