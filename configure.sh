@@ -34,6 +34,7 @@ then
     echo ".keybindings will add vi editor shortcut if you want to write commands"
     echo "in vi editor screen. Shortcut will be (control + E)"
     fileCheck .keybindings
+    echo "check_git_status" >> .zshrc
 elif [ "$answer" == "N" ]
 then
     cat backup/.zshrc > .zshrc
@@ -53,6 +54,7 @@ then
     echo ".keybindings will add vi editor shortcut if you want to write commands"
     echo "in vi editor screen. Shortcut will be (control + E)"
     fileCheck .keybindings
+    echo "check_git_status" >> .zshrc
 else
     echo "Invalid input supplied. Valid inputs are Y or N"
     exit 1

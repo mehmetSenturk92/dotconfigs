@@ -1,3 +1,4 @@
+#!/bin/bash
 # Functions
 ## Open file in DBeaver
 ODbeaver() {
@@ -26,4 +27,26 @@ create_python_project(){
         echo "# $project_name"  >> $dir_python/$project_name/README.md
         conda env create -f $dir_python/$project_name/config/environment.yaml
         source activate $project_name
+}
+
+check_git_status(){
+        echo "Fetching remote changes" && git -C $HOME/dotconfigs fetch
+        git_status_var=$(git -C $HOME/dotconfigs status $HOME/dotconfigs | grep "Your branch is behind")
+        if [ "$git_status_vat" != "" ]
+        then 
+                echo "Your dotconfigs version is behind. Do you want to update it ? [ Y / N]" 
+                read answer
+                if [ "$answer" = "Y" ]
+                then
+                        echo "Pulling origin from repository"
+                        git -C $HOME/dotconfigs pull origin
+                        echo "Last version has been pulled re-launching zsh."
+                        zsh
+                elif [ "$answer" = "N" ]
+                then
+                        echo "Skipping version update."
+                fi
+        else
+                echo "You are using last version of dotconfigs"
+        fi
 }
