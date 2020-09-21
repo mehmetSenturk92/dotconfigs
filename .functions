@@ -32,7 +32,7 @@ create_python_project(){
 check_git_status(){
         echo "Fetching remote changes" && git -C $HOME/dotconfigs fetch
         git_status_var=$(git -C $HOME/dotconfigs status $HOME/dotconfigs | grep "Your branch is behind")
-        if [ "$git_status_vat" != "" ]
+        if [ "$git_status_var" != "" ]
         then 
                 echo "Your dotconfigs version is behind. Do you want to update it ? [ Y / N]" 
                 read answer
