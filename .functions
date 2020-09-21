@@ -30,9 +30,21 @@ create_python_project(){
 }
 
 check_git_status(){
+        git_branch_var=$(git branch --show-current)
+        if [ $git_branch_var != "master" ]
+        then
+                echo "You are working on $git_branch_var at dotconfigs directory. Do you want to change branch to master ?"
+                read answer
+                if [ "$answer" = "Y" ]
+                then
+                        git -C $HOME/dotconfigs checkout master
+                        echo "Branch has been switched."
+                elif [ "$answer" = "N" ]
+                        echo "Staying at the $git_branch_var branch."
+        fi
         echo "Fetching remote changes" && git -C $HOME/dotconfigs fetch
         git_status_var=$(git -C $HOME/dotconfigs status $HOME/dotconfigs | grep "Your branch is behind")
-        if [ "$git_status_vat" != "" ]
+        if [ "$git_status_var" != "" ]
         then 
                 echo "Your dotconfigs version is behind. Do you want to update it ? [ Y / N]" 
                 read answer
