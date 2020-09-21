@@ -31,7 +31,7 @@ create_python_project(){
 
 check_git_status(){
         # Function for checking remote repository changes
-        git_branch_var=$(git branch --show-current)
+        git_branch_var=$(git -C $HOME/dotconfigs branch --show-current)
         if [ $git_branch_var != "master" ]
         then
                 echo "You are working on $git_branch_var at dotconfigs directory. Do you want to change branch to master ?"
