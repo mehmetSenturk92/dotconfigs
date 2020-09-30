@@ -1,4 +1,5 @@
 # Aliases for shortcuts
+# Aliases are the best
 alias ll='ls -ltr'
 alias llh='ls -ltrh'
 alias lla='ls -ltra'
